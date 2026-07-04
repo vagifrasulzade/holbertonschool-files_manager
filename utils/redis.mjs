@@ -3,7 +3,6 @@ import { promisify } from 'util';
 
 const redis = redisPackage.default || redisPackage;
 
-
 class RedisClient {
   constructor() {
     this.client = redis.createClient();
