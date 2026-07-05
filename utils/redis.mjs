@@ -1,11 +1,12 @@
-import redisPackage from 'redis';
+import redis from 'redis';
 import { promisify } from 'util';
-
-const redis = redisPackage.default || redisPackage;
 
 class RedisClient {
   constructor() {
-    this.client = redis.createClient();
+    this.client = redis.createClient({
+      host: process.env.REDIS_HOST || 'localhost',
+      port: process.env.REDIS_PORT || 6379,
+    });
 
     this.client.on('error', (err) => {
       console.log(`Redis client not connected to the server: ${err.message}`);
